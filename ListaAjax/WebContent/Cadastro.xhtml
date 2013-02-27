@@ -30,7 +30,7 @@ Pessoas selecionadas        </f:facet>
 
 			<p:column style="width:4%">
 				<p:commandButton action="#{cadastroBean.remover}" title="Remover"
-					icon="ui-icon-trash" update="tb_pessoas_selecionadas">
+					icon="ui-icon-trash" update="@this">
 					<f:setPropertyActionListener
 						target="#{cadastroBean.pessoaSelecionada}" value="#{pessoa}" />
 				</p:commandButton>
@@ -57,7 +57,7 @@ Selecione a pessoa a ser incluída:        </f:facet>
             #{pessoa.idade}  
         </p:column>
 				<f:facet name="footer">
-					<p:commandButton id="inserir" value="Inserir"
+					<p:commandButton id="inserir" value="Inserir" update=":form1"
 						actionListener="#{cadastroBean.inserir}" />
 				</f:facet>
 

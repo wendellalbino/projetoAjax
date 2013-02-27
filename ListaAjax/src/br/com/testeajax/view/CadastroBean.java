@@ -49,7 +49,7 @@ public class CadastroBean implements Serializable {
 	}
 
 	public void excluir() {
-
+		listaPessoasSelecionadas.remove(pessoaSelecionada);
 	}
 
 	public List<Pessoa> getPessoas() {
