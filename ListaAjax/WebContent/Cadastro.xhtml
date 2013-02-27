@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastro de grupo</title>
+</h:head>
+<h:body>
+	<h:form id="form1">
+Atividade:
+<p:inputText value="#{cadastroBean.grupo.atividade}" />
+		<br />
+		<br />
+		<p:dataTable id="tb_pessoas_selecionadas" var="pessoa"
+			value="#{cadastroBean.pessoasSelecionadas}"
+			emptyMessage="Nenhuma pessoa selecionada neste grupo">
+			<f:facet name="header">  
+Pessoas selecionadas        </f:facet>
+
+			<p:column headerText="Nome" style="width:24%">
+				<h:outputText value="#{pessoa.nome}" />
+			</p:column>
+
+			<p:column headerText="Idade" style="width:24%">
+				<h:outputText value="#{pessoa.idade}" />
+			</p:column>
+
+			<p:column style="width:4%">
+				<p:commandButton action="#{cadastroBean.remover}" title="Remover"
+					icon="ui-icon-trash" update="tb_pessoas_selecionadas">
+					<f:setPropertyActionListener
+						target="#{cadastroBean.pessoaSelecionada}" value="#{pessoa}" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+
+		<br />
+		<br />
+		<h:form id="form2">
+
+			<p:dataTable id="pessoas" var="pessoa"
+				value="#{cadastroBean.pessoasModel}" rowKey="#{pessoa.codigo}"
+				selection="#{cadastroBean.pessoaSelecionada}" selectionMode="single">
+
+				<f:facet name="header">  
+Selecione a pessoa a ser incluída:        </f:facet>
+
+				<p:column headerText="Nome">  
+            #{pessoa.nome}  
+        </p:column>
+
+				<p:column headerText="Idade">  
+            #{pessoa.idade}  
+        </p:column>
+				<f:facet name="footer">
+					<p:commandButton id="inserir" value="Inserir" update="@all"
+						actionListener="#{cadastroBean.inserir}" />
+				</f:facet>
+
+			</p:dataTable>
+
+		</h:form>
+
+		<p:commandButton value="Cadastrar" action="#{cadastroBean.salvar}" />
+	</h:form>
+
+</h:body>
+</html>
