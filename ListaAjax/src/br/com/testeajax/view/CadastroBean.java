@@ -33,7 +33,6 @@ public class CadastroBean implements Serializable {
 		Pessoas pessoas = this.repositorios.getPessoas();
 		this.setPessoas(pessoas.todos());
 		pessoasModel = new PessoaDataModel(this.pessoas);
-		
 
 	}
 
@@ -66,8 +65,14 @@ public class CadastroBean implements Serializable {
 		return grupo;
 	}
 
-	public void setGrupo(Grupo grupo) {
+	public void setGrupo(Grupo grupo) throws CloneNotSupportedException {
 		this.grupo = grupo;
+		if (this.grupo == null) {
+			this.grupo = new Grupo();
+		} else {
+			listaPessoasSelecionadas = grupo.getPessoas();
+			this.grupo = (Grupo) grupo.clone();
+		}
 	}
 
 	public PessoaDataModel getPessoasModel() {
