@@ -33,6 +33,8 @@ public class CadastroBean implements Serializable {
 		Pessoas pessoas = this.repositorios.getPessoas();
 		this.setPessoas(pessoas.todos());
 		pessoasModel = new PessoaDataModel(this.pessoas);
+		
+
 	}
 
 	public void inserir() {

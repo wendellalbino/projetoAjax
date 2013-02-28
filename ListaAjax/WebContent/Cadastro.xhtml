@@ -6,8 +6,13 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Cadastro de grupo</title>
+	<title>Cadastro de grupo</title>	
+	
+	<f:metadata>
+			<f:viewParam name="codigo" value="#{cadastroBean.grupo}" />
+		</f:metadata>
 </h:head>
+
 <h:body>
 	<h:form id="form1">
 Atividade:
@@ -15,7 +20,7 @@ Atividade:
 		<br />
 		<br />
 		<p:dataTable id="tb_pessoas_selecionadas" var="pessoa"
-			value="#{cadastroBean.pessoasSelecionadas}"
+			value="#{cadastroBean.listaPessoasSelecionadas}"
 			emptyMessage="Nenhuma pessoa selecionada neste grupo">
 			<f:facet name="header">  
 Pessoas selecionadas        </f:facet>
@@ -29,8 +34,8 @@ Pessoas selecionadas        </f:facet>
 			</p:column>
 
 			<p:column style="width:4%">
-				<p:commandButton action="#{cadastroBean.remover}" title="Remover"
-					icon="ui-icon-trash" update="@this">
+				<p:commandButton action="#{cadastroBean.excluir}" title="Remover"
+					icon="ui-icon-trash" update=":form1">
 					<f:setPropertyActionListener
 						target="#{cadastroBean.pessoaSelecionada}" value="#{pessoa}" />
 				</p:commandButton>
@@ -62,10 +67,10 @@ Selecione a pessoa a ser incluída:        </f:facet>
 				</f:facet>
 
 			</p:dataTable>
+		<p:commandButton value="Cadastrar" action="#{cadastroBean.salvar}" />
 
 		</h:form>
 
-		<p:commandButton value="Cadastrar" action="#{cadastroBean.salvar}" />
 	</h:form>
 
 </h:body>
